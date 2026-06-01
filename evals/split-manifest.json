@@ -1,0 +1,70 @@
+{
+  "task_id": "6fe21602-eef8-425f-a075-113331fd7e16",
+  "skill_name": "skill-nda-review",
+  "split_ratio": "0.6/0.4",
+  "total_documents": 5,
+  "train_count": 3,
+  "holdout_count": 2,
+  "training": [
+    {
+      "doc_id": "6a3b26a7-60a9-4dfd-a529-d993f2713816",
+      "storage_path": "knowledge/localhost/NDA/6a3b26a7-60a9-4dfd-a529-d993f2713816.docx",
+      "local_path": "/Users/soon/ws/process-gpt-skill-creator-agent/workspace/6fe21602-eef8-425f-a075-113331fd7e16/training/6a3b26a7-60a9-4dfd-a529-d993f2713816.docx",
+      "description": "비밀유지계약서 — M&A 실사 목적, 단독 NDA (노바인더스트리얼 x 한빛캐피탈파트너스)",
+      "language": "ko",
+      "annotations_found": 10
+    },
+    {
+      "doc_id": "39634809-c495-49ac-9fa9-0ec1677b08cc",
+      "storage_path": "knowledge/localhost/NDA/39634809-c495-49ac-9fa9-0ec1677b08cc.docx",
+      "local_path": "/Users/soon/ws/process-gpt-skill-creator-agent/workspace/6fe21602-eef8-425f-a075-113331fd7e16/training/39634809-c495-49ac-9fa9-0ec1677b08cc.docx",
+      "description": "상호비밀유지계약서 — SaaS API 통합 검토 (클라우드웍스코리아 x Globex SaaS)",
+      "language": "ko",
+      "annotations_found": 10
+    },
+    {
+      "doc_id": "e95b363b-b93f-4698-ad6d-d90d39daa460",
+      "storage_path": "knowledge/localhost/NDA/e95b363b-b93f-4698-ad6d-d90d39daa460.docx",
+      "local_path": "/Users/soon/ws/process-gpt-skill-creator-agent/workspace/6fe21602-eef8-425f-a075-113331fd7e16/training/e95b363b-b93f-4698-ad6d-d90d39daa460.docx",
+      "description": "비밀유지서약서 — 임원 후보자 인터뷰용 (솔라리스에너지 x 개인 후보자)",
+      "language": "ko",
+      "annotations_found": 9
+    }
+  ],
+  "holdout": [
+    {
+      "doc_id": "3ca0fe8c-4e2a-414c-b233-f3ac096292b3",
+      "storage_path": "knowledge/localhost/NDA/3ca0fe8c-4e2a-414c-b233-f3ac096292b3.docx",
+      "local_path": null,
+      "description": "[HOLDOUT — NOT extracted] To be used as eval test case 1",
+      "eval_test_case_id": "holdout-1",
+      "storage_path_for_eval": "knowledge/localhost/NDA/3ca0fe8c-4e2a-414c-b233-f3ac096292b3.docx"
+    },
+    {
+      "doc_id": "02d818af-43c5-4dc2-b1ba-4b731cae4439",
+      "storage_path": "knowledge/localhost/NDA/02d818af-43c5-4dc2-b1ba-4b731cae4439.docx",
+      "local_path": null,
+      "description": "[HOLDOUT — NOT extracted] To be used as eval test case 2",
+      "eval_test_case_id": "holdout-2",
+      "storage_path_for_eval": "knowledge/localhost/NDA/02d818af-43c5-4dc2-b1ba-4b731cae4439.docx"
+    }
+  ],
+  "extraction_summary": {
+    "total_annotations_extracted": 29,
+    "rules_formulated": 12,
+    "rule_categories": [
+      "confidential_info_scope",
+      "confidentiality_period",
+      "statutory_exceptions",
+      "liability_cap",
+      "governing_law",
+      "return_destruction_certification",
+      "permitted_recipients",
+      "purpose_narrowing",
+      "notice_provisions",
+      "individual_proportionality",
+      "residuals_change_of_control",
+      "no_binding_employment_clauses"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "evals": [
+    {
+      "id": "holdout-saas-api-integration",
+      "description": "Mutual NDA — SaaS API Integration (CloudWorks Korea × Globex SaaS)",
+      "source_document": "knowledge/localhost/NDA/3ca0fe8c-4e2a-414c-b233-f3ac096292b3.docx",
+      "prompt": "다음 NDA를 검토해주세요. SaaS / Software 도메인의 규칙을 적용하여 검토해줘.\n\n--- NDA 내용 ---\n{holdout_doc_content}\n\n검토 결과는 지정된 출력 형식을 따라주세요.",
+      "expected_checks": [
+        "Confidential info definition is scoped (not 'all forms')",
+        "Confidentiality period is reasonable (≤5 years)",
+        "All 4 statutory exceptions present (especially 'independently developed')",
+        "Liability cap exists",
+        "Governing law is neutral or favorable (not California)",
+        "Purpose clause is specific (API integration evaluation, not 'any business discussion')",
+        "Residuals clause present for technical context",
+        "Permitted recipients need-to-know + equivalent obligations (not prior consent)",
+        "Destruction certificate required",
+        "Notice provisions include both parties + deemed receipt"
+      ]
+    },
+    {
+      "id": "holdout-individual-nondisclosure",
+      "description": "Individual NDA — Executive Hiring (Solaris Energy × Individual Candidate)",
+      "source_document": "knowledge/localhost/NDA/02d818af-43c5-4dc2-b1ba-4b731cae4439.docx",
+      "prompt": "다음 NDA를 검토해주세요. Executive / Individual 도메인의 규칙을 적용하여 검토해줘.\n\n--- NDA 내용 ---\n{holdout_doc_content}\n\n검토 결과는 지정된 출력 형식을 따라주세요.",
+      "expected_checks": [
+        "No embedded non-compete (must be separate employment agreement)",
+        "Confidentiality period is defined (not indefinite; ≤3 years post-process)",
+        "Liquidated damages capped at reasonable % of compensation",
+        "All 4 statutory exceptions present",
+        "Liability cap exists",
+        "Destruction certificate required",
+        "No-binding clause present",
+        "Employment contract relationship clarified",
+        "Personal data compliance with PIPA",
+        "Notice provisions include both parties"
+      ]
+    }
+  ]
+}
