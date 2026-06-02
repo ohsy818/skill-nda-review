@@ -1,340 +1,184 @@
 ---
 name: skill-nda-review
-description: Review Non-Disclosure Agreements (NDA) for Korean parties, identifying high-risk clauses and recommending market-standard alternatives. Use when a user asks to review, analyze, or check an NDA, confidentiality agreement, or CDA — especially Korean contracts with M&A, SaaS, medical AI, executive recruitment, trade secret, or technology collaboration contexts.
+description: NDA(Non-Disclosure Agreement, 비밀유지계약서)를 검토하고 위험 요소를 분석합니다. 비밀정보 정의의 균형, 예외 조항(4대 요소), 비밀유지 기간, 책임상한, 준거법/관할, 파기확인서, 비차단선언 등 15개 핵심 검토 규칙을 적용하여 NDA 계약서를 체계적으로 검토합니다. NDA 검토, 계약서 검토, 비밀유지계약서 분석, NDA clause review, NDA contract review가 필요할 때 이 스킬을 사용하세요.
 ---
 
-# NDA Contract Review Skill
+<!-- SLOW_UPDATE_START -->
+## 핵심 검토 규칙 (15개)
 
-Review Non-Disclosure Agreements (NDA) for Korean parties, identifying high-risk clauses and recommending market-standard alternatives.
+<!-- extracted-rules.md의 15개 규칙에 기반 — 수정 금지 -->
+<!-- SLOW_UPDATE_END -->
 
-## When to Use
+## 개요
 
-- User uploads or pastes an NDA (Korean, English, or bilingual)
-- User asks to "review my NDA", "NDA 검토해줘", "계약서 봐줘"
-- Any contract labeled as NDA, confidentiality agreement, or CDA
+이 스킬은 NDA(Non-Disclosure Agreement) 계약서를 검토하고 위험 요소를 분석하는 것을 지원합니다.
+5개 이상의 실제 NDA 문서에 대한 법무팀 자문(법무팀 리비전 커멘트)을 분석하여 도출된 **15개 핵심 검토 규칙**을 적용합니다.
 
-## Skill Overview
+## 검토 워크플로우
 
-Analyze the provided NDA against market-standard review rules derived from 30+ legal team annotations across M&A, SaaS, Medical AI, executive recruitment, trade secret, and technology collaboration NDAs.
+NDA 계약서를 받은 다음 순서로 검토하세요:
 
----
+### 1. 계약 기본 정보 파악
 
-## Review Workflow
+먼저 다음 정보를 확인합니다:
 
-### Step 1: Identify NDA Type and Context
+- **계약 당사자**: 회사 간(Co-to-Co)인지, 회사 대 개인(Co-to-Individual)인지
+- **계약 유형**: 상호(Mutual) NDA인지, 단일(Unilateral) NDA인지
+- **계약 목적**: M&A, 기술협력, 채용/면접, 영업비밀 보호 등
 
-Determine the following before applying rules:
+### 2. 15개 핵심 검토 규칙 적용
 
-| Attribute | Options |
-|-----------|---------|
-| Direction | **Mutual** (양방향) or **Unilateral** (단방향) |
-| Context | M&A/Due Diligence, SaaS/API, Medical/AI, Executive Recruitment, Trade Secret/Manufacturing, Technology, General |
-| Parties | Korean vs. Korean, Korean vs. US, Korean vs. Other |
-| Recipient Type | **Company (법인)** or **Individual (자연인)** |
+다음 규칙들을 순서대로 검토합니다. 각 규칙에 대해 **위험도(HIGH/MEDIUM/LOW)**를 평가합니다.
 
-**RULE-011 (Information-Flow Asymmetry):** Before committing to mutual form, map expected information flow. If one party discloses >80%, request unilateral NDA.
+#### Rule 1: 비밀정보 정의의 균형 (HIGH)
 
-**RULE-023 (Individual vs. Company):** If the receiving party is an individual (e.g., executive candidate, contractor), apply enhanced protections (see RULE-020, RULE-021, RULE-022).
+비밀정보의 정의가 너무 광범위하거나 지나치게 협소하지 않은지 확인합니다.
 
----
+- 광범위 정의 ("구두·서면·전자적 형식 등 모든 형태"): 모든 정보가 비밀정보로 취급됨 → **HIGH**
+- 협소 정의 ("서면 Confidential 표시된 정보에 한한다"): 구두 공개를 반영하지 못함 → **HIGH**
+- 적정 정의: "Confidential 표시가 있거나, 정보의 성질과 공개 상황에 비추어 합리적으로 비밀로 이해되어야 하는 정보"
+- 구두 공개 시 30일 이내 서면 확인 조항이 있어야 함
+- 구체적 정보 유형 예시 포함 (기술사, 사업계획서, 고객목록 등)
 
-### Step 2: Check Confidential Information Definition (RULE-001)
+#### Rule 2: 4대 예외 조항 (HIGH)
 
-Verify the definition of "Confidential Information" (비밀정보):
+모든 예외 조항이 포함되어야 합니다. 하나라도 누락되면 **HIGH**:
 
-- [ ] Does NOT use catch-all language ("all forms", "all information", "일체의 정보")
-- [ ] Limited to: (a) marked confidential, AND/OR (b) reasonably understood as confidential at disclosure
-- [ ] Oral disclosures: confirmed in writing within 30 days
-- [ ] Examples of confidential types included (tech specs, business plans, customer data)
-- [ ] Purpose clause is specific (not "any business discussion" — see RULE-016)
+1. 공개 당시 이미 공지되었거나 수령자의 귀책 없이 사후에 공지된 정보
+2. 수령자가 공개자로부터 받기 이전부터 적법하게 보유하고 있던 정보
+3. 제3자로부터 비밀유지 의무 없이 적법하게 입수한 정보
+4. **독자개발(Independently developed)** — 반드시 포함되어야 함
 
-**Flag as HIGH risk if:** "모든 형태", "일체", "구두 정보 포함" without written confirmation window.
+> 독자개발 예외가 없으면 수령자가 독자적으로 개발한 결과물이 이 NDA로 제약될 수 있습니다.
 
-**RULE-014 (Purpose Clause Must Be Specific):** Overly broad purpose clauses ("any business discussion," "possible collaboration") allow the receiving party to use confidential information for unrelated purposes. Flag as Medium.
+#### Rule 3: 비밀유지 기간 (HIGH)
 
-**Preferred language:**
-```
-"비밀정보"라 함은 Confidential 또는 이에 상응하는 표시가 된 서면 정보와,
-공개 당시 비밀로 인식될 수 있는 정보에 한한다. 구두로 공개된 정보는
-공개 후 30일 이내에 서면으로 확인된 경우에 한하여 비밀정보에 포함한다.
+- 표준: 계약 종료 후 **2~5년**(M&A는 3년 권장)
+- 무기한(Indefinite)은 **HIGH** 위험 — 개인 대상일 때 특히 문제
+- 영업비밀(Trade secrets)은 시간제한 면제되어야 함
+- 존속기간은 계약 종료일 기준인지, 공개일 기준인지 확인
 
-본 계약의 목적: [구체적인 프로젝트 또는 평가 목적]
-```
+#### Rule 4: 관련자 제공 조건 (MEDIUM)
 
----
+- 직전 서면 동의(prior written consent) 방식은 비현실적 → **MEDIUM**
+- 적정 방식: 동등 이상의 비밀유지 의무를 부과하는 조건부 제공 허용
+- 수령자는 관련자의 위반에 대해 자신의 위반처럼 책임져야 함
 
-### Step 3: Verify All Four Exceptions (RULE-002)
+#### Rule 5: 책임상한 (HIGH)
 
-Every NDA must contain ALL FOUR standard exceptions:
+- **책임상한 없이 모든 손해에 대한 배상책임은 HIGH** — 반드시 책임상한 조항 필요
+- 책임 범위는 직접 손해만 포함 (간접·결과적 손해 제외)
+- 고정 금액 상한 또는 거래액/급여의 12개월액 등 명확한 상한 설정
+- 상호 NDA의 경우 상호적임
 
-| # | Exception | Required? |
-|---|-----------|-----------|
-| 1 | Already public / made public through no fault of receiving party | Yes |
-| 2 | Already lawfully possessed before disclosure | Yes |
-| 3 | Lawfully received from third party without confidentiality obligation | Yes |
-| 4 | **Independently developed** (독자개발한 정보) | **Yes — CRITICAL** |
-| 5 | Compelled by law/government (optional but recommended) | Recommended |
+#### Rule 6: 인력 비권유/경업금지 (HIGH)
 
-**Flag as HIGH risk if:** Exception #4 (independent development) is missing — this is the MOST frequently omitted exception.
+- 인력 비권유는 **12개월 이내**여야 함 (24개월은 문제)
+- 본 계약을 통해 알게 된 임직원만 제한 가능
+- 경업금지(Non-compete)는 NDA에 포함 금지 — 별도의 고용계약 부속서에서 처리해야 함
 
----
+#### Rule 7: 파기확인서 의무 (MEDIUM)
 
-### Step 4: Review Non-Disclosure Period (RULE-003)
+- 비밀정보 반환·파기 의무에 **파기확인서(Destruction Certificate)** 필요
+- 수령자 직급 이상 서명, 계약 종료 또는 요청일로부터 30일 이내 전달
+- 전자 사본 포함
 
-| Context | Market Standard | Max Acceptable |
-|---------|-----------------|----------------|
-| M&A / Due Diligence | 3 years post-termination | 5 years |
-| Technology / SaaS | 3 years post-termination | 5 years |
-| General cooperation | 3 years | 5 years |
-| Medical / Healthcare | 3 years (general), indefinite (personal data) | Indefinite for health data |
-| Trade secrets | Indefinite (separate dual-period structure) | Indefinite |
+#### Rule 8: 준거법 및 관할 (MEDIUM)
 
-**Flag as HIGH risk if:**
-- General confidentiality period exceeds 5 years or is indefinite (for non-trade-secret information)
-- Lacks dual-period structure (finite term + separate trade secret carve-out)
+- 상대방 본국 법률(델라웨어, 캘리포니아 등)은 **MEDIUM** 위험
+- 우선순위:
+  1. 한국법 + 서울중앙지법 (우리 측 관할) — 최우선
+  2. SIAC (Singapore International Arbitration Centre) — 중립 대체안
+  3. 기타 중립 관할 (HKIAC 등)
 
-**Anti-pattern:** "본 계약 종료 후 7년간" — 7 years is excessive. "무기한" (indefinite) is rarely enforceable.
+#### Rule 9: 통지 조항 (LOW)
 
-**RULE-024 (Dual-Period Structure for Trade Secrets):** The NDA should separate general confidentiality period from trade secret protection:
-- General term: 3 years post-termination
-- Trade secrets: Indefinite, governed by separate provisions
+- 양쪽 당사자의 연락처, 이메일, 담당자 명시
+- 이메일 통지 시 **간주 수신 규정** (5영업일 경과 시 수신으로 간주)
+- 계약 발효일 명시
 
-**Suggested fix:** "본 계약 종료 후 3년간. 단, 영업비밀에 대하여는 별도 법정에 따른다."
+#### Rule 10: 비차단선언/거래의무없음 (HIGH)
 
----
+- 본 계약이 거래 체결 의무를 발생시키지 않음 명시
+- 당사자 어느 측도 언제든지 협상 종료 가능
+- 우선교섭권이나 독점적 교섭권 조항 부재 확인
 
-### Step 5: Check Liability & Damages (RULE-004)
+#### Rule 11: 잔존 지식 조항 (MEDIUM)
 
-Every NDA must include BOTH:
+- 직원의 비조력 기억(retained in unaided memory)에 보존된 일반 지식·기술 사용 허용
+- 구체적 비밀정보나 문서는 제외됨 명시
 
-1. **Limitation to direct damages only** — exclude indirect, consequential, punitive damages
-2. **A monetary cap on liability**
+#### Rule 12: 회사 대 개인 vs 회사 간 (HIGH)
 
-| Context | Typical Cap |
-|---------|-------------|
-| Mutual NDA | USD 100,000 or 12 months of anticipated payments |
-| Unilateral NDA | Fixed sum (e.g., KRW 1 billion) |
-| M&A NDA | Transaction value or fixed sum |
+- 상대방이 개인(자연인, 후보자)인 경우:
+  - 회사용 템플릿의 부적절 조항 제거 (경업금지, 과도한 위약금 등)
+  - 인력 비권유/경업지지는 별도의 고용계약에서 처리
+  - 위약금은 개인 소득 대비 적정 수준 (연봉의 30~50%)
+  - 무기한 비밀유지 의무 문제 — 기간 설정 필수
 
-**Flag as HIGH risk if:** "직접·간접·결과적 손해 일체" (all direct, indirect, consequential damages) without cap.
+#### Rule 13: 상호 vs 단일 NDA (MEDIUM)
 
----
+- 상호 NDA로 명기되었으나 정보 흐름이 비대칭인 경우:
+  - 실제 정보 흐름을 평가하여 단일 NDA로 변경 고려
+  - 상대방이 우리 공개 정보를 근거로 부당한 주장을 할 수 있는지 판단
 
-### Step 6: Review Non-Solicitation & Non-Compete (RULE-005, RULE-007)
+#### Rule 14: 통제권 변경 조항 (MEDIUM)
 
-#### Non-Solicitation (RULE-005)
-If non-solicitation clause exists:
+- 안티-할당 조항에 M&A/통제권 변경 시 어떻게 되는지 명시
+- 선택: (a) 통제권 변경 시 자동 종료, 또는 (b) 변경 전 공개자 동의 필요
 
-- [ ] Duration ≤ 12 months (12+ months is excess; flag as HIGH)
-- [ ] Limited to employees encountered through the NDA relationship
-- [ ] Does NOT prohibit "indirect" contact (overly broad)
-- [ ] Complies with Korean Labor Standards Act
+#### Rule 15: 개인정보(PII) 처리 (HIGH)
 
-**Flag as HIGH risk if:** 12+ month duration, or blanket prohibition on all employee contact.
+- 채용/면접 맥락에서 개인정보가 공유되는 경우:
+  - 개인정보보호법(PIPA) 준수 조항 포함
+  - 또는 면접 과정에서 개인정보는 익명화/가명화하여 공유
 
-#### Non-Compete (RULE-007)
-- [ ] Non-compete clause is NOT embedded in the NDA
-- [ ] If present, flag as **HIGH** and recommend moving to a separate agreement
+### 3. 검토 결과 요약
 
-Non-compete (경업금지) clauses embedded in NDA templates are problematic under Korean law:
-- They restrict freedom of occupation (직업선택의 자유)
-- Courts require: business-necessity, consideration (반대급부), reasonable scope (period/region)
-- They should be in a **separate agreement** (e.g., employment contract)
-
----
-
-### Step 7: Governing Law & Jurisdiction (RULE-006)
-
-Priority hierarchy for Korean party:
-
-| Priority | Preferred Terms | When to Accept |
-|----------|-----------------|----------------|
-| 1st | Korean law + Seoul Central District Court | Default position |
-| 2nd | Singapore arbitration (SIAC rules) | Neutral forum acceptable |
-| 3rd | US state court jurisdiction | **Flag as negotiation blocker** — high cost, potential bias |
-
-**Flag if:** Delaware Chancery Court, California superior court, or any US state court without SIAC arbitration fallback.
-
----
-
-### Step 8: Representatives & Sub-contractors (RULE-008)
-
-- [ ] NO prior written consent required for employees (need-to-know basis)
-- [ ] Professional advisors (lawyers, accountants) permitted upon imposition of **equivalent confidentiality obligations**
-- [ ] Sub-contractors: primary party assumes vicarious liability for breaches
-- [ ] **Sub-tier subcontracting:** if subcontractors are further subcontracting, extend equivalent confidentiality obligations downstream
-
-**Preferred language:**
-```
-"수령자는 본 거래 검토에 필요한 범위 내에서 임직원 및 자문사에게
-비밀정보를 제공할 수 있으나, 해당 자에게 본 계약과 동등 이상의
-비밀유지 의무를 부과하여야 한다."
-```
-
-**RULE-026 (Trade Secret — Anti-Unfair-Competition Law):** For trade secret NDAs, reference Korea's Trade Secret Protection Act (부정경쟁방지법). Define trade secret using the three-element test:
-1. Information not readily accessible to the public (비공상성)
-2. Actual use for business purposes (영업이용성)
-3. Confidentiality measures taken (비밀유지성)
-
----
-
-### Step 9: Return & Destruction (RULE-009)
-
-- [ ] Specific timeline: 5 business days (fast) or 30 days (reasonable)
-- [ ] **Destruction certificate:** officer-signed written confirmation required
-- [ ] Archival copy exception for regulatory compliance
-- [ ] Covers electronic copies and derivatives
-
-**RULE-019 (Destruction Certificate for Individuals):** When the recipient is an individual, destruction certificate should be signed in writing (not officer-seal).
-
----
-
-### Step 10: Check Boilerplate Clauses (RULE-010)
-
-Verify presence of these standard clauses:
-
-| Clause | Purpose |
-|--------|---------|
-| No-binding / No-obligation (RULE-015) | Prevents forced transactions |
-| Notice method with deemed-receipt (RULE-017) | Prevents disputes about notice delivery |
-| Residuals clause (tech) (RULE-018) | Engineers can use general knowledge |
-| Change of control (RULE-022) | Protects against unexpected M&A changes |
-| No-assignment clause | Restricts transferring rights/obligations |
-
-**RULE-015 (No-Deal-Obligation):** Add clause: "본 계약은 어떠한 거래 의무도 발생시키지 않으며, 양 당사자는 언제든 협상을 중단할 수 있다." Flag as High if missing — NDA could be construed as preliminary agreement.
-
-**RULE-017 (Notice Clause Must Cover Both Parties):** The notice clause must:
-1. Specify contact information for **both** parties (name, address, email)
-2. Define deemed receipt (e.g., email sent + 5 business days = delivered)
-3. Avoid requiring "reply confirmation" for email, which creates uncertainty
-
-**RULE-018 (Residuals / General-Knowledge Clause):** For technical collaborations, include:
-> "본 계약은 메모리에 잔존하는 일반 지식의 사용을 금지하지 아니한다."
-> (This NDA does not prohibit the use of general knowledge retained in personnel's memories.)
-
-**RULE-022 (Assignment / Change of Control):** The assignment clause should include a Change of Control provision: either automatic binding on successors, or the right to require consent upon CoC.
-
----
-
-### Step 11: Industry-Specific Provisions (RULE-012)
-
-Add based on context:
-
-#### Medical / Healthcare Data
-- [ ] Separate Personal Information Processing Agreement (PIPA Art. 26)
-- [ ] Anonymization standards (K-Anonymous, differential privacy)
-- [ ] Cross-border transfer consent (PIPA Art. 28-8)
-- [ ] Security controls: ISMS-P or ISO 27701
-- [ ] Data breach notification: 72 hours + written report + subject notice (PIPA Art. 34)
-- [ ] Personal information protection liability insurance
-
-#### AI / Technology Collaboration
-- [ ] IP ownership explicitly allocated (avoid joint ownership without commercial terms)
-- [ ] Data provider retains data rights; AI company owns model IP with usage license
-- [ ] Sub-contractor liability succession clause
-- [ ] Training data provenance documented
-- [ ] Enhanced language for IP co-ownership in joint AI projects
-
-#### SaaS / Software Integration
-- [ ] Purpose scope specific (not "any business discussion")
-- [ ] Residuals clause essential
-- [ ] Source code and technical specs receive highest protection
-- [ ] Mutual form appropriate when both parties share technical information
-
-#### Executive Recruitment (Individual Candidate)
-- [ ] Liquidated damages proportional to individual income (not fixed corporate levels)
-- [ ] Non-compete should NOT be in the NDA — separate employment agreement required
-- [ ] Clarify relationship with future employment contract (RULE-021)
-- [ ] Infinite confidentiality terms flagged as High risk
-- [ ] Damage amounts capped at 30-50% of annual salary at most
-
-#### Trade Secret / Manufacturing
-- [ ] Anti-Unfair-Competition Law (부정경쟁방지법) references
-- [ ] Triple-test for trade secret definition (공상성, 영업이용성, 비밀유지성)
-- [ ] Dual-period structure (finite general term + indefinite trade secret protection)
-- [ ] Sub-tier subcontracting confidentiality obligations
-- [ ] Physical and digital security measures specified
-
----
-
-## Individual Recipient Enhancements (Natural Person NDA)
-
-When the receiving party is an individual (e.g., executive candidate, contractor):
-
-**RULE-020 (Liability Proportionality):** Liquidated damages should be proportional to individual income. Cap at 30-50% of annual salary.
-
-**RULE-021 (Employment Contract Relationship):** Clarify how the NDA relates to the future employment contract. Non-compete, non-solicitation, and certain performance provisions should move to the employment agreement.
-
-**RULE-023 (Individual Destruction):** For individuals, destruction certificates should be signed in writing (no officer seal required).
-
----
-
-## Output Format
-
-Return a structured review report:
+검토 완료 후 다음 형식으로 결과를 요약합니다:
 
 ```markdown
-# NDA Review Report
+## NDA 검토 결과
 
-## Document Summary
-- Type: [Mutual/Unilateral]
-- Context: [M&A / SaaS / Medical / Technology / Executive Recruitment / Trade Secret / General]
-- Parties: [e.g., Korean vs. US]
-- Recipient Type: [Company/Individual]
+### 계약 기본 정보
+- 당사자: A회사 ↔ B회사 (회사 간)
+- 유형: 상호 NDA
+- 목적: 기술협력
 
-## Risk Summary
-- High Risk Items: [count]
-- Medium Risk Items: [count]
-- Low Risk Items: [count]
+### 위험 요약
+| 항목 | 위험도 | 문제점 |
+|------|--------|--------|
+| 비밀정보 정의 | MEDIUM | 구두 공개 30일 확인 조항 부재 |
+| 4대 예외 | HIGH | 독자개발 예외 누락 |
+| 비밀유지 기간 | HIGH | 무기한 — 3년으로 단축 권장 |
+| 책임상한 | HIGH | 책임상한 없음 — 직접 손해 제한 및 금액 상한 필요 |
+| ... | ... | ... |
 
-## Detailed Findings
-
-### [Finding #] — [Clause Title]
-**Risk:** High/Medium/Low | **Rule:** RULE-XXX
-
-**Current Language:** (quote or summarize the clause)
-
-**Issue:** (explain why it's problematic)
-
-**Recommendation:** (provide preferred language or specific revision)
+### 주요 수정 제안
+1. 제3조 예외 조항에 독자개발 예외 추가
+2. 비밀유지 기간을 계약 종료 후 3년으로 변경
+3. 책임상한 조항 추가 (직접 손해 한도, 최고 OO원)
 ```
 
-## Key Principles
+### 4. 개인 수신자专项检查
 
-1. **Korean party protection** — all rules default to favoring the Korean reviewing party
-2. **Market standard benchmark** — compare every term against the standards above
-3. **Context-aware** — apply industry-specific addenda based on NDA context
-4. **Actionable** — always provide specific alternative language, not just "change this"
-5. **Escalation** — flag US jurisdiction as negotiation blocker; missing independent development as critical; non-compete in NDA as High
-6. **Recipient-type-aware** — apply enhanced protections for individual recipients
+상대방이 개인인 경우 Rule 12의专项检查를 우선 수행합니다:
 
-## Rule Quick Reference
+- [ ] 경업금지 조항 제거 또는 분리
+- [ ] 위약금 적정성 확인 (연봉 대비)
+- [ ] 무기한 비밀유지 기간 제거
+- [ ] 고용계약과의 관계 명시
 
-| Rule | Topic | Severity |
-|------|-------|----------|
-| RULE-001 | Confidential Info Definition | High |
-| RULE-002 | Independent Development Exception | High |
-| RULE-003 | NDA Term Limits | High |
-| RULE-004 | Liability Cap | High |
-| RULE-005 | Non-Solicit Reasonableness | High |
-| RULE-006 | Governing Law/Jurisdiction | Medium-High |
-| RULE-007 | Non-Compete Must Be Separate | High |
-| RULE-008 | Prior Consent for Representatives | Medium |
-| RULE-009 | Return/Destruction Certificate | Medium |
-| RULE-010 | Missing Boilerplate | Varies |
-| RULE-011 | Mutual vs. Unilateral / Info-Flow Asymmetry | Medium |
-| RULE-012 | Industry-Specific Addenda | Context |
-| RULE-013 | — | (reserved) |
-| RULE-014 | Purpose Clause Specificity | Medium |
-| RULE-015 | No-Deal-Obligation Clause | High |
-| RULE-016 | — | (reserved) |
-| RULE-017 | Notice Clause Both Parties | Medium |
-| RULE-018 | Residuals / General-Knowledge | Medium |
-| RULE-019 | Individual Destruction Certificate | Medium |
-| RULE-020 | Individual Liability Proportionality | High |
-| RULE-021 | Individual vs. Employment Contract | Medium-High |
-| RULE-022 | Assignment / Change of Control | Medium |
-| RULE-023 | Individual Recipient Enhancements | High |
-| RULE-024 | Trade Secret Dual-Period Structure | High |
-| RULE-025 | — | (reserved) |
-| RULE-026 | Trade Secret Triple-Test / Anti-UCPL | High |
+### 5. 미결사항 및 자문 요청
+
+다음 사항이 있을 경우 법무팀 자문 권장:
+
+- 미완성 4대 예외 조항
+- 무기한 비밀유지 기간
+- 책임상한 부재
+- 상대방 본국 법률 적용
+- 경업금지 조항 포함
+
+## 참고 문서
+
+상세한 규칙은 `references/extracted-rules.md`를 참조하세요. 15개 규칙의 패턴 분석, 영향 조항 예시, 상세 체크리스트가 포함되어 있습니다.
