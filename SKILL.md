@@ -1,8 +1,6 @@
 ---
 name: skill-nda-review
 description: NDA(Non-Disclosure Agreement, 비밀유지계약서)를 검토하고 위험 요소를 분석합니다. 비밀정보 정의의 균형, 예외 조항(4대 요소), 비밀유지 기간, 책임상한, 준거법/관할, 파기확인서, 비차단선언 등 15개 핵심 검토 규칙을 적용하여 NDA 계약서를 체계적으로 검토합니다. 모든 결과에는 원문 인용과 조항번호/쪽수(또는 동등 위치 정보)를 포함하여 근거를 명확히 제시합니다. NDA 검토, 계약서 검토, 비밀유지계약서 분석, NDA clause review, NDA contract review가 필요할 때 이 스킬을 사용하세요.
-metadata:
-  include_tools: send_email_tool
 ---
 
 ## 핵심 검토 규칙 (15개)
